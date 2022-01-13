@@ -29,7 +29,8 @@ body {
 }
 .main-container {
   min-height: 90vh;
-  width: 23%;
+  /* width: 23%; */
+  width: min(90%, 350px);
   /* border: 1px solid black; */
   background-color: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -83,7 +84,10 @@ body {
   flex-wrap: wrap;
   overflow: hidden;
 }
-
+.add-btn {
+  outline: none;
+  border: none;
+}
 .btns {
   background-color: #ffffff;
   display: flex;
@@ -98,11 +102,12 @@ body {
   background: -webkit-linear-gradient(bottom right, #0dd3cd, #0dd2d1);
   background: -moz-linear-gradient(bottom right, #0dd3cd, #0dd2d1);
   background: linear-gradient(to top left, #0dd3cd, #0dd2d1);
+}
+form {
   display: flex;
   justify-content: space-around;
   padding: 8px 8px 8px 8px;
 }
-
 .addTask input {
   width: 70%;
   outline: none;

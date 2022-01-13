@@ -4,7 +4,7 @@ clearBtn.addEventListener('click', (e) => {
     localStorage.clear();
     location.reload();
 });
-  
+const todoForm = document.querySelector("#todo-form");
 const addInput = document.querySelector("#add-input");
 const addBtn = document.querySelector("#add-btn");
 
@@ -17,8 +17,10 @@ dateDisplay.innerText = today.toUTCString().slice(0,12);
 
 document.addEventListener('DOMContentLoaded', displayTodosFromLocalStorage);
 
-addBtn.addEventListener('click', (e) => {
-    const task = addInput.value;
+todoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const task = addInput.value.trim();
+
    
     if (!task) {
         alert("enter task first");
@@ -30,6 +32,8 @@ addBtn.addEventListener('click', (e) => {
     todo.classList.add("not-done");
     //console.log(todo.classList);
 
+
+    //createTodo(todo ,task);
     const todoContentDiv = document.createElement("p");
     todoContentDiv.innerText = task;
     todo.appendChild(todoContentDiv);
@@ -67,6 +71,7 @@ addBtn.addEventListener('click', (e) => {
 
 //clear addinput value
     addInput.value = "";
+    addInput.focus();
     
 });
 
@@ -88,11 +93,13 @@ todos.addEventListener('click', (e) => {
     }
     if (itemClicked.classList[0] === "edit-task") {
         addInput.value = itemClicked.parentElement.parentElement.firstElementChild.innerText;
+        addInput.focus();
         removeTodoFromLocalStorage(itemClicked.parentElement.parentElement.firstElementChild.innerText);
         itemClicked.parentElement.parentElement.remove();
     }
     
 });
+
 
 function saveToLocalStorage(todoText , status) {
     //check if arr already has some item
@@ -115,6 +122,7 @@ function saveToLocalStorage(todoText , status) {
 
 
 function displayTodosFromLocalStorage() {
+    addInput.focus();
     let todosArr;
     if (localStorage.getItem('todosArr') === null) {
         todosArr = [];
@@ -125,7 +133,7 @@ function displayTodosFromLocalStorage() {
     }
 
     //loop through each element in arr and display them on screen;
-    //how to display? create those elements again ...is it the right way?
+    //how to display? create those elements again ...
     todosArr.forEach(obj => {
 
         const task = obj.todoText;
@@ -133,8 +141,7 @@ function displayTodosFromLocalStorage() {
         const todo = document.createElement("div");
         todo.classList.add("todo");
         if (obj.status === 'not-done') todo.classList.add("not-done");  
-        else if(obj.status === 'done') todo.classList.add("done");
-        
+        else if (obj.status === 'done') todo.classList.add("done");
 
         const todoContentDiv = document.createElement("p");
         todoContentDiv.innerText = task;
@@ -165,7 +172,6 @@ function displayTodosFromLocalStorage() {
         todoBtns.appendChild(deleteIcon);
 
         todo.appendChild(todoBtns);
-        //markDoneFromLocalStorage(itemClicked.parentElement.parentElement);
 
         todos.appendChild(todo);
         
