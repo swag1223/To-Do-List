@@ -40,7 +40,7 @@ body {
 
 .header {
   /* border: 1px solid red; */
-  height: 105px;
+  height: 115px;
   background: #10d1d0;
   /* 10d1d0 */
   background: -webkit-linear-gradient(bottom right, #0dd3cd, #1b7ad1);
@@ -65,13 +65,13 @@ body {
 }
 
 .todos {
-  font-size: 13px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 .todo {
+  font-size: 15px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   margin: 5px;
